@@ -8,12 +8,64 @@
 	"item": [
 		{
 			"name": "Criar usuário",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"beltrano@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}\r\n\r\n",
+					"raw": "{\r\n  \"nome\": \"Fulano\",\r\n  \"email\": \"jovem12345@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar usuário com mesmo email",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Fulano\",\r\n  \"email\": \"jovem12345@gmail.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,6 +133,52 @@
 			"response": []
 		},
 		{
+			"name": "Listar usuário por id com erro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Esta listando o usuário por id com sucesso\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/FQSDcaDHKtHK",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"FQSDcaDHKtHK"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Listar usuários",
 			"event": [
 				{
@@ -132,7 +230,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
+							"pm.test(\"Usuario deletado com sucesso\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
@@ -175,7 +273,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
+							"pm.test(\"Usuario editado com sucesso\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
@@ -190,6 +288,49 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"nome\": \"Fulano louquinho da silva\",\r\n    \"email\": \"fulano@qa.com\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/0uxuPY0cbmQhpEz1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"0uxuPY0cbmQhpEz1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editando usuário por id com erro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Usuario editado com sucesso\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Fulano louquinho da silva\",\r\n    \"email\": \"eugostodesorvete@gmail.com\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
